@@ -18,12 +18,12 @@ def main():
     print(df.columns)
     opcion = int(input("seleccione la funcion que desea ver: "))
     if opcion == 1:
-        retweet20(df)
+        retweet10(df)
 
 
-def retweet20(df):
+def retweet10(df):
     d1 = df.sort_values(by='retweetCount', ascending=False)
-    print(d1.head(20))
+    print(d1.head(10))
 
 
 main()
