@@ -22,6 +22,9 @@ def main():
     if opcion == 2:
         users(df)
 
+    if opcion == 3:
+        days(df)
+
 
 def retweet10(df):
     d1 = df.sort_values(by='retweetCount', ascending=False)
@@ -35,6 +38,16 @@ def users(df):
     df2 = pd.DataFrame(d2)
     df2 = df2.value_counts(ascending=False)
     print(df2.head(10))
+
+def days(df):
+    d1 = df.date
+    d2 = []
+    for data in d1:
+        d2.append(data[0:10])
+    df2 = pd.DataFrame(d2)
+    df2 = df2.value_counts(ascending=False)
+    print(df2.head(10))
+
 
 main()
 
