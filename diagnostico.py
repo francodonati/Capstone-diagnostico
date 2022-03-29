@@ -11,12 +11,12 @@ from sqlalchemy import desc
 
 def main():
     tmp = []
-    for line in open('farmers-protest-tweets-2021-2-4.json','r'):
+    for line in open('farmers-protest-tweets-2021-03-5.json','r'):
         tmp.append(json.loads(line))
 
     df = pd.DataFrame(tmp)
     print(df.columns)
-    opcion = int(input("seleccione la funcion que desea ver: "))
+    opcion = int(input("seleccione la funcionalidad que desea ver: "))
     if opcion == 1:
         retweet10(df)
     if opcion == 2:
@@ -25,6 +25,8 @@ def main():
     if opcion == 3:
         days(df)
 
+    if opcion == 4:
+        hashtags(df)
 
 def retweet10(df):
     d1 = df.sort_values(by='retweetCount', ascending=False)
@@ -48,6 +50,18 @@ def days(df):
     df2 = df2.value_counts(ascending=False)
     print(df2.head(10))
 
+def hashtags(df):
+    d1 = df.content
+    d2 = []
+    for data in d1:
+        data = data.split()
+        for word in data:
+            if word.find("#") != -1:
+                d2.append(word)
+    df2 = pd.DataFrame(d2)
+    df2 = df2.value_counts(ascending=False)
+    print(df2.head(10))
+    
 
 main()
 
